@@ -95,38 +95,55 @@
     </div>
 </div>
 <p> HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA </p>
-
-<table  class="table1">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.cverecurso)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.urlrecurso)
-            </th>
-            
-            <th></th>
-        </tr>
-    </thead>
-
-    <tbody>
-
-        @foreach (var item in Model)
+@{var urlvideoyou = "";  }             //viene del model
+    @{
+        var urlyoutub = "https://www.youtube.com/watch?v=aLse8YU1QN0&list=PLDFE15C42477CB0D5&index=7";
+        // busca si es video de youtube y el id del video
+        var n = urlyoutub.IndexOf("v=");
+        if (n >= 0)
         {
+            var subCadena = urlyoutub.Substring((n+2), 11);
+            urlvideoyou = "https://www.youtube.com/embed/" + subCadena.Trim() + "?rel=0&amp;autoplay=1&amp;controls=1&amp;showinfo=0";
+        }
+    }
+
+    <iframe width="700" height="880" src=@urlvideoyou allowfullscreen dir="auto">  </iframe>
+
+
+    <table class="table1">
+        <thead>
             <tr>
-                <td   style="color:blue;">
-                    @Html.DisplayFor(modelItem => item.cverecurso)
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.cverecurso)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.urlrecurso)
+                </th>
 
-                <td  style="color:green;">
-                    @Html.DisplayFor(modelItem => item.urlrecurso)
-                </td>
-
+                <th></th>
             </tr>
-            <tr> -----------------------------------------------------</tr>
-                }
+        </thead>
 
-</tbody>
+        <tbody>
 
-</table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="color:blue;">
+                        @Html.DisplayFor(modelItem => item.cverecurso)
+                    </td>
+
+                    <td style="color:green;">
+                        @Html.DisplayFor(modelItem => item.urlrecurso)
+                    </td>
+
+                </tr>
+                <tr> -----------------------------------------------------</tr>
+            }
+
+        </tbody>
+
+    </table>
+
+
+
